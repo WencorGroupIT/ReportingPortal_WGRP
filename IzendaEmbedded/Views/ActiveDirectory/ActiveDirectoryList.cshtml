@@ -1,0 +1,80 @@
+﻿@model IEnumerable<IzendaEmbedded.Models.UserDetail>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/r-2.2.1/datatables.min.css" />
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/r-2.2.1/datatables.min.js"></script>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<link href="~/Content/site.css" rel="stylesheet" />
+
+@*TODO Loading dialog*@
+@*Manages the datatable*@
+<script type="text/javascript">
+    $(function () {
+        var table = $('#example').DataTable();
+        @*TODO fix sorting by active user*@
+
+    });
+</script>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb" style="height: 100px; padding-top: 20px; padding-left: 140px; background-color: #FFFFFF">
+        <li class="breadcrumb-item" style="font-family: arial; font-size:40px"><a href=@Url.Action("Index", "Home")>Izenda</a></li>
+        <li class="breadcrumb-item active" aria-current="page" style="font-family: arial; font-size:40px">Active Directory</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-10">
+        @*TODO fix formatting of columns*@
+        <table class="display" id="example" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                    <th>@Html.DisplayNameFor(model => model.EmailAddress)</th>
+                    <th>@Html.DisplayNameFor(model => model.Active)</th>
+
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Active)
+                        </td>
+
+                        <td>
+                            <a href="@Url.Action("EditActiveDirectoryUser", "ActiveDirectory", new { emailAddress = item.EmailAddress }, null)" class="material-icons">mode_edit</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-1">
+    </div>
+</div>
