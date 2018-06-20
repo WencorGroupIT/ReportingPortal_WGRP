@@ -5,6 +5,7 @@ namespace IzendaEmbedded.Controllers
 {
 	public class HomeController : Controller
 	{
+		[AllowAnonymous]
 		public ActionResult Index()
 		{
 			if (!Request.IsAuthenticated)
@@ -23,7 +24,7 @@ namespace IzendaEmbedded.Controllers
 
 			return View();
 		}
-
+		[AllowAnonymous]
 		public ActionResult NoAccessToIzenda()
 		{
 			return View();

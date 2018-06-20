@@ -23,6 +23,8 @@ using System.Security.Claims;
 
 namespace IzendaEmbedded.Controllers
 {
+	
+	[Authorize]
 	public class AccountController : Controller
 	{
 		private SAMLResponse _samlResponse;
@@ -52,7 +54,7 @@ namespace IzendaEmbedded.Controllers
 			HttpContext.GetOwinContext().Authentication.SignOut(
 				new AuthenticationProperties {RedirectUri = callbackUrl});
 		}
-
+		[AllowAnonymous]
 		public ActionResult LoginExternal(string username)
 		{
             return Redirect(ConfigurationManager.AppSettings["WencorADFSLink"]);
@@ -66,25 +68,10 @@ namespace IzendaEmbedded.Controllers
 			string userName = null;
 			var message = string.Empty;
 
-			try
-			{
 				var result = await ValidateSamlRequest(out userName);
 
 				if (!result)
 				{
-				}
-			}
-			catch (Exception e)
-			{
-				message += "exception" + e + Environment.NewLine;
-			}
-
-			if (!string.IsNullOrWhiteSpace(message))
-				using (var eventLog = new EventLog("Application"))
-				{
-					eventLog.Source = "Application";
-					eventLog.WriteEntry(message, EventLogEntryType.Information);
-					return Redirect("~/Home/NoAccessToIzenda");
 				}
 
 			var model = new LoginModel
@@ -212,22 +199,6 @@ namespace IzendaEmbedded.Controllers
 			return _samlResponse;
 		}
 
-		public static async Task<bool> IsIzendaAdmin(IPrincipal user)
-		{
-			var token = GetToken();
-			var izendaUsers = await IzendaUtilities.IzendaGetAllUsers(token);
-			var identityUser = await _userManager.FindByNameAsync(user.Identity.Name);
-
-			var currentUser = izendaUsers.FirstOrDefault(x => x.Name == identityUser.UserName);
-
-			if (currentUser.SystemAdmin)
-			{
-				return true;
-			}
-
-			return false;
-		}
-
 		private bool ValidateX509CertificateSignature(XmlDocument xDoc)
 		{
 			var XMLSignatures = xDoc.GetElementsByTagName("Signature", "http://www.w3.org/2000/09/xmldsig#");
@@ -252,18 +223,6 @@ namespace IzendaEmbedded.Controllers
 			return samlAssertion;
 		}
 
-		private static string GetToken()
-		{
-			var user = new UserInfo
-			{
-				TenantUniqueName = ConfigurationManager.AppSettings["SystemTenant"],
-				UserName = ConfigurationManager.AppSettings["IzendaAdminUser"]
-			};
-
-			var token = IzendaTokenAuthorization.GetToken(user);
-
-			return token;
-		}
 
 		public sealed class LoginModel
 		{

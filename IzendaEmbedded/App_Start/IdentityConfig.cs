@@ -52,6 +52,7 @@ namespace IzendaEmbedded
 		{
 			var identity = await base.CreateUserIdentityAsync(user);
 			identity.AddClaim(new System.Security.Claims.Claim("SystemAdmin", user.SystemAdmin.ToString()));
+			identity.AddClaim(new System.Security.Claims.Claim("UserName", user.UserName));
 			return identity;
 		}
 	}

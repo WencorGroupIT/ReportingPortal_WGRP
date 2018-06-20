@@ -217,7 +217,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\FileHelpers\CacheUpdate.cs" />
-    <Compile Include="Helpers\HttpRequestBaseExtensions.cs" />
     <Compile Include="Helpers\Security\WencorUserStore.cs" />
     <Compile Include="IzendaBoundary\IzendaTokenAuthorization.cs" />
     <Compile Include="IzendaBoundary\IzendaUtilities.cs" />

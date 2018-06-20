@@ -12,8 +12,10 @@ using Microsoft.Ajax.Utilities;
 
 namespace IzendaEmbedded.Controllers
 {
+	[Authorize]
 	public class ActiveDirectoryController : Controller
 	{
+		
 		public async Task<ActionResult> EditActiveDirectoryUser(string emailAddress)
 
 		{
@@ -207,7 +209,6 @@ namespace IzendaEmbedded.Controllers
 		}
 
 		public async Task<ActionResult> Parse(string fileName)
-
 		{
 			try
 
