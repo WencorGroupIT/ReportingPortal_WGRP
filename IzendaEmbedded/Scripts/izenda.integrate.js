@@ -1,5 +1,5 @@
-﻿var DoIzendaConfig = function () {
-    var hostApi = "http://localhost:81/api/";
+﻿var DoIzendaConfig = function (izendaApiUrl) {
+    var hostApi = izendaApiUrl;
     var configJson = {
         "WebApiUrl": hostApi,
         "BaseUrl": "/izenda",

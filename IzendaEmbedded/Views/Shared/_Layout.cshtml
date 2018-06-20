@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Configuration
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -78,7 +79,8 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            DoIzendaConfig();
+            var izendaApiUrl = '@ConfigurationManager.AppSettings.Get("IzendaApiUrl")';
+            DoIzendaConfig(izendaApiUrl);
             $('[data-toggle="tooltip"]').tooltip();
             $('[data-toggle="dropdown"]').dropdown();
         });
