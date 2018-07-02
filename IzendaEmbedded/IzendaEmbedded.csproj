@@ -531,6 +531,8 @@
     <Content Include="Views\ActiveDirectory\EditActiveDirectoryUser.cshtml" />
     <Content Include="Views\ActiveDirectory\ActiveDirectoryList.cshtml" />
     <Content Include="Views\Home\NoAccessToIzenda.cshtml" />
+    <Content Include="Views\Home\ReportPart.cshtml" />
+    <Content Include="Views\Shared\_ReportPartLayout.cshtml" />
     <None Include="Web.Dev.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

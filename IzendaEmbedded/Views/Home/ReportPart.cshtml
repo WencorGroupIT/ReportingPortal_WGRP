@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "ReportPart";
+    Layout = "~/Views/Shared/_ReportPartLayout.cshtml";
+}
+
+
+
+<style>
+    #izenda-root > .izenda {
+        background-color: transparent !important;
+    }
+</style>
+
+
+<div class="loader" id="progressLoader"> </div>
+<div class="izenda-container" id="izenda-root"></div>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            izendaInitReportPartExportViewer('@ViewBag.Id', '@ViewBag.Token');
+           
+        });
+
+    </script>
+}

@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNet.Identity
+@using IzendaAnalytics.Models
+@{
+
+    //Using tenantId, identify location of folder where the css resides for the given tenant and build path to CSS.
+    var currentTenant = User.Identity != null ? ((System.Security.Claims.ClaimsIdentity)User.Identity).FindFirstValue("tenantName") : null;
+    var izendaCssPath = currentTenant == null ? "" : string.Format("/Content/{0}/izenda-{1}.css", currentTenant.ToString().ToUpper(), currentTenant.ToString().ToLower());
+
+    if (!string.IsNullOrWhiteSpace(izendaCssPath))
+    {
+        if (!File.Exists(Server.MapPath(izendaCssPath)))
+        {
+            izendaCssPath = string.Empty;
+        }
+    }
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @* Apply css based on the users tenant *@
+    <link href="~/Scripts/izenda/izenda-ui.css" rel="stylesheet">
+
+    @*Add Custom CSS based on the tenantId and path set in izendaCssPath above *@
+    <link href=@izendaCssPath rel="stylesheet">
+
+</head>
+<body>
+    <div class="container-fluid body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    @* #izenda *@
+    <script src="~/Scripts/alertify.js"></script>
+    @Scripts.Render("~/bundles/izenda")
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        DoIzendaConfig();
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="dropdown"]').dropdown();
+        $("#reportPartLoader").hide();
+        $("#reportPartLoaderText").hide();
+    });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

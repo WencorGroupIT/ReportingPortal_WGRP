@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
+using IzendaEmbedded.IzendaBoundary;
 
 namespace IzendaEmbedded.Controllers
 {
@@ -27,6 +29,29 @@ namespace IzendaEmbedded.Controllers
 		[AllowAnonymous]
 		public ActionResult NoAccessToIzenda()
 		{
+			return View();
+		}
+
+		[AllowAnonymous]
+		[Route("viewer/reportpart/{id}")]
+		public ActionResult ReportPart(Guid id, string token)
+		{
+			
+			//can we validate the token here
+			//validates token
+			var user = IzendaTokenAuthorization.GetUserInfo(token);
+
+			if(user != null)
+			{
+				ViewBag.Id = id;
+				ViewBag.Token = token;
+			}
+			else
+			{
+				return HttpNotFound(); // is invalid user roles 
+			}
+			
+
 			return View();
 		}
 	}
