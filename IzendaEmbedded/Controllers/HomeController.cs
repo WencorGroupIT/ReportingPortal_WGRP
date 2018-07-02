@@ -32,18 +32,6 @@ namespace IzendaEmbedded.Controllers
 			return View();
 		}
 
-		[Route("izenda/settings")]
-		[Route("izenda/new")]
-		[Route("izenda/dashboard")]
-		[Route("izenda/report")]
-		[Route("izenda/reportviewer")]
-		[Route("izenda/reportviewerpopup")]
-		[Route("izenda")]
-		public ActionResult Izenda()
-		{
-			return View();
-		}
-
 		[AllowAnonymous]
 		[Route("viewer/reportpart/{id}")]
 		public ActionResult ReportPart(Guid id, string token)
