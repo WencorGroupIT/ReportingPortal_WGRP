@@ -14,7 +14,6 @@ namespace IzendaEmbedded.Controllers
 		[Authorize]
 		public ActionResult GenerateToken()
 		{
-			
 			var tenantName = ((ClaimsIdentity) User.Identity).FindFirstValue("tenantName");
 			var username = ((ClaimsIdentity) User.Identity).FindFirstValue("UserName");
 

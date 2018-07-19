@@ -1,0 +1,14 @@
+﻿@using IzendaEmbedded.Models
+@{
+    ViewBag.Title = "Report Viewer";
+}
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            izendaInitReportViewer('@ViewBag.Id');
+        });
+    </script>
+}
+<div class="loader" id="progressLoader"> </div>
+<div class="izenda-container" id="izenda-root"></div>

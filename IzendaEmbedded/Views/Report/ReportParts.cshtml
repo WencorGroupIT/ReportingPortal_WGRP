@@ -1,0 +1,67 @@
+﻿@using IzendaAnalytics.Models
+@using System.Web.Script.Serialization;
+@{
+    ViewBag.Title = "Report Parts";
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // hard code an array object of report parts.
+            var reportParts = [
+                {
+                    "selector": "izenda-report-part1",              // the element id which we want to render report part on.
+                    "id": "F43BE711-342B-4E74-80CD-EBB6308C8DD4",   // the id of report part
+                    "overridingFilterValue": {                      // filter object to pass to api
+                        p1value: 60,                                // override filter value at position 1 which is applying on current report part (Quantity greater than 40)
+                        p2value: '40;#50'                           // override filter value at position 2 which is applying on current report part (Unit Price between 40 and 50)
+                    }
+                },
+                {
+                    "selector": "izenda-report-part2",
+                    "id": "B5A9C762-B32E-4CD0-9CAF-8C93AE580255",
+                    "overridingFilterValue": {
+                        p1value: 60                                 // Quantity greater than 60
+                    }
+                },
+                {
+                    "selector": "izenda-report-part3",
+                    "id": "F2111034-B19B-477E-A037-90E12D7CB1E0"
+                }
+            ]
+
+            izendaInitReportPart(reportParts);
+        });
+
+        $(window).load(function () {
+            $("#reportPartLoader").hide();
+            $("#reportPartLoaderText").hide();
+        })
+    </script>
+}
+<style>
+    .report-part-haft-width {
+        float: left;
+        width: 40%;
+        height: 40%;
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+
+    .report-part-fullwidth {
+        float: left;
+        width: 85%;
+        height: 40%;
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+</style>
+
+<div class="loader" id="reportPartLoader"> </div>
+<div class="izenda-container">
+    <div class="report-part-haft-width" id="izenda-report-part1"></div>
+    <div class="report-part-haft-width" id="izenda-report-part2"></div>
+    <div class="report-part-fullwidth" id="izenda-report-part3"></div>
+</div>
+

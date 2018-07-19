@@ -17,7 +17,7 @@ namespace IzendaEmbedded.ApiControllers
 
 		[HttpGet]
 		[AllowAnonymous]
-		[Route("GetIzendaAccessToken")]
+		[Route("getIzendaAccessToken")]
 		public IHttpActionResult GetIzendaAccessToken(string message)
 		{
 			var userInfo = IzendaTokenAuthorization.DecryptIzendaAuthenticationMessage(message);
