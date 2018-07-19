@@ -1,5 +1,6 @@
-﻿@using Microsoft.AspNet.Identity
-@using IzendaAnalytics.Models
+﻿@using System.Configuration
+@using Microsoft.AspNet.Identity
+@using IzendaEmbedded.Models
 @{
 
     //Using tenantId, identify location of folder where the css resides for the given tenant and build path to CSS.
@@ -42,11 +43,17 @@
 
     @* #izenda *@
     <script src="~/Scripts/alertify.js"></script>
-    @Scripts.Render("~/bundles/izenda")
+    <script src="~/Scripts/izenda/izenda_common.js"></script>
+    <script src="~/Scripts/izenda/izenda_locales.js"></script>
+    <script src="~/Scripts/izenda/izenda_vendors.js"></script>
+    <script src="~/Scripts/izenda/izenda_ui.js"></script>
+    <script src="~/Scripts/izenda.integrate.js"></script>
+    <script src="~/Scripts/izenda.utils.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function () {
-        DoIzendaConfig();
+        var izendaApiUrl = '@ConfigurationManager.AppSettings.Get("IzendaApiUrl")';
+        DoIzendaConfig(izendaApiUrl);
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="dropdown"]').dropdown();
         $("#reportPartLoader").hide();

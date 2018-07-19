@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Advanced Report Parts";
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            reportPartLoadUpdateResultSample();
+
+            $("#update-report-part-result").click(function () {
+                reportPartLoadUpdateResultSample();
+            });
+
+            reportPartLoadUpdateAlone();
+
+            // Hide loading spinner
+            $("#reportPartLoader").hide();
+            $("#reportPartLoaderText").hide();
+        });
+
+        function reportPartLoadUpdateResultSample() {
+            // hard code your report part id
+            var reportPartId = "[your_report_part_id]";
+
+            // filter object to pass to api
+            // override filter value at position 1 which is applying on current report part (Country = "Austria")
+            var overridingFilterValue = {
+                p1value: $('#p1value').val(),
+            }
+
+            izendaInitReportPartUpdateResult(reportPartId, overridingFilterValue, "update-result");
+        }
+
+        function reportPartLoadUpdateAlone() {
+            // Render First tab - Part #1
+            var part1Id = "[your_1st_report_part_id]";
+            var part2Id = "[your_2nd_report_part_id]";
+            var part3Id = "[your_3rd_report_part_id]";
+
+            izendaRenderReportPart(part1Id, "update-alone");
+
+            $("#part1").click(function () {
+                $("#part1").addClass("active");
+                $("#part2").removeClass("active");
+                $("#part3").removeClass("active");
+
+                izendaRenderReportPart(part1Id, "update-alone");
+            });
+
+            $("#part2").click(function () {
+                $("#part1").removeClass("active");
+                $("#part2").addClass("active");
+                $("#part3").removeClass("active");
+
+                izendaRenderReportPart(part2Id, "update-alone");
+            });
+
+            $("#part3").click(function () {
+                $("#part1").removeClass("active");
+                $("#part2").removeClass("active");
+                $("#part3").addClass("active");
+
+                izendaRenderReportPart(part3Id, "update-alone");
+            });
+        }
+    </script>
+}
+
+<div class="loader" id="reportPartLoader"> </div>
+<h3>Report Part - Update Result Sample</h3>
+<h4>This is an example of how integrated instances could use different filter controls to pass in filter values to report parts</h4>
+<div class="row" style="margin-top:10px">
+    <div class="col-md-12">
+        <input class="pvalue-control" id="p1value" type="text" /><!--ex: Country = Austria-->
+        <span style="margin-left: 10px"></span>
+        <button class="btn btn-primary" id="update-report-part-result">Update Result</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 report-part-container" id="update-result">
+    </div>
+</div>
+
+<div class="container-fluid">
+    <h3>Report Parts - Update Alone Sample</h3>
+    <h4>This is an example of how report parts can be changed within the same container</h4>
+    <ul class="nav nav-tabs">
+        <li id="part1" class="active"><a href="javascript:void(0)">Part #1</a></li>
+        <li id="part2"><a href="javascript:void(0)">Part #2</a></li>
+        <li id="part3"><a href="javascript:void(0)">Part #3</a></li>
+    </ul>
+    <br>
+    <div class="report-part-container" id="update-alone"></div>
+</div>

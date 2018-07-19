@@ -211,7 +211,9 @@
     <Compile Include="Cache\CacheSystem.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActiveDirectoryController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -533,6 +535,12 @@
     <Content Include="Views\Home\NoAccessToIzenda.cshtml" />
     <Content Include="Views\Home\ReportPart.cshtml" />
     <Content Include="Views\Shared\_ReportPartLayout.cshtml" />
+    <Content Include="Views\Home\Izenda.cshtml" />
+    <Content Include="Views\Report\ReportViewer.cshtml" />
+    <Content Include="Views\Report\ReportCustomFilterViewer.cshtml" />
+    <Content Include="Views\Report\ReportParts.cshtml" />
+    <Content Include="Views\Report\AdvancedReportParts.cshtml" />
+    <Content Include="Views\Dashboard\DashboardViewer.cshtml" />
     <None Include="Web.Dev.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -603,7 +611,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>14809</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:14809/</IISUrl>
+          <IISUrl>http://localhost:14810/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:14810/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
