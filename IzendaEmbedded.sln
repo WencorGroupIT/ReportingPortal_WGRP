@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IzendaEmbedded", "IzendaEmb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wencor.DataAccess", "Wencor.DataAccess\Wencor.DataAccess.csproj", "{2716CAE4-AC5F-48E6-8572-21BFF57B6BB9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{1EF7DF22-CB76-4EF1-BD77-89177E3EAAAF}"
+	ProjectSection(SolutionItems) = preProject
+		ConvertToEmbedded.sql = ConvertToEmbedded.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
