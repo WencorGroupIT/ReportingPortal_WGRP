@@ -5,9 +5,10 @@
         $(document).ready(function () {
             var overridingFilterQueries = JSON.parse('@Html.Raw(WebUtility.HtmlDecode(ViewBag.overridingFilterQueries))');
 
-             izendaInitReportViewer('@ViewBag.Id', {
-              overridingFilterValue: overridingFilterQueries
-            }
+            izendaInitReportViewer('@ViewBag.Id',
+                {
+                    overridingFilterValue: overridingFilterQueries
+                });
         });
     </script>
 }

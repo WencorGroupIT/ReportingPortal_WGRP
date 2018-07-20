@@ -18,7 +18,7 @@ Set Value = 'http://localhost:81/'
 Where Name = 'WebAPIUrl'
 
 Update IzendaSystemSetting
-Set Value = 'http://localhost:14810/'
+Set Value = 'http://localhost:14810/' 
 Where Name = 'WebUrl'
 
 

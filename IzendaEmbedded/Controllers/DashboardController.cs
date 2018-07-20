@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace IzendaEmbedded.Controllers
@@ -12,7 +13,21 @@ namespace IzendaEmbedded.Controllers
         // GET: Dashboard
         public ActionResult DashboardViewer(string id)
 		{
-            var queryString = Request.QueryString;
+			if (!Request.IsAuthenticated)
+			{
+				return RedirectToAction("LoginExternal", "Account");
+			}
+			ViewBag.SystemAdmin = false;
+			var identity = (System.Security.Claims.ClaimsIdentity) User.Identity;
+			var claims = identity.Claims;
+			string SystemAdmin = claims.FirstOrDefault(x => x.Type == "SystemAdmin")?.Value;
+
+			if (SystemAdmin == "True")
+			{
+				ViewBag.SystemAdmin = true;
+			}
+			
+			var queryString = Request.QueryString;
             dynamic filters = new System.Dynamic.ExpandoObject();
             foreach (string key in queryString.AllKeys)
             {
